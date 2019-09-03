@@ -1,27 +1,27 @@
 #lang sicp
 ; a) Division should be the type, with get-record operation.
 ; b) Division should still be the type, operations would be get-salary,
-; get-address etc.
-; c)
-
-(define (install-package)
-  (define (get-record-1 file)
-    )
-  (define (get-record-2 file)
-    )
-  (define (get-salary-1 emp-record)
-    )
-  (define (get-salary-2 emp-record)
-    )
-  (put 'get-record 'div1 get-record-1)
-  (put 'get-record 'div2 get-record-2)
-  
-  (put 'get-salary 'div1 get-salary-1)
-  (put 'get-salary 'div2 get-salary-2)
-  'done)
+; get-address etc. The type information should be encoded in employee as well.
+; Should be similar to a. 
 
 
+(define (get-record file employee)
+  (get 'get-record ((tag-type file) (tag-type employee)) (contents file) (contents employee)))
+
+; c) 
 
 (define (find-employee-record div-files emp-name)
-  )
+  (if (empty? div-files)
+      (#f)
+      (if (get-record (car div-files) emp-name)
+          (get-record (car div-files) emp-name)
+          (find-employee-record (cdr div-files) emp-name))))
+
+; d)
+; Install a package for each new division coming in with Insatiable.
+; Hard to check any answers with this kind of an exercise.
+
+
+
+      
 
